@@ -27,19 +27,26 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // ✅ Redis만 사용할 때 필요한 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    // ❌ RDBMS + MyBatis 관련은 주석 처리
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    // runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
+    // runtimeOnly 'com.mysql:mysql-connector-j'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.5'
+
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.5'
-    runtimeOnly 'com.mysql:mysql-connector-j'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
+
 
 tasks.named('test') {
     useJUnitPlatform()
