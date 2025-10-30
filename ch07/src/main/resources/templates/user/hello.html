@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Page</title>
+</head>
+<body>
+<h1>Hello 테스트</h1>
+<div id="result"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        // POST 요청을 /user/hello로 전송
+        fetch('/user/hello', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: "홍길동"
+            })
+        })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data); // "Hello 홍길동!!!" 출력
+            })
+    });
+</script>
+</body>
+</html>
