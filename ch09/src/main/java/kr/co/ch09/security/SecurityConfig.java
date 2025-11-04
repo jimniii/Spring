@@ -33,11 +33,12 @@ public class SecurityConfig {
 
         // 인가 설정
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/manager/**").hasAnyRole("ADMIN", "MANAGER")
-                .requestMatchers("/member/**").hasAnyRole("ADMIN", "MANAGER", "MEMBER")
-                .requestMatchers("/guest/**").permitAll()
-                .anyRequest().permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/manager/**").hasAnyRole("ADMIN", "MANAGER")
+                        .requestMatchers("/member/**").hasAnyRole("ADMIN", "MANAGER", "MEMBER")
+                        .requestMatchers("/cart/**").hasAnyRole("ADMIN","MANAGER","USER")
+                        .requestMatchers("/guest/**").permitAll()
+                        .anyRequest().permitAll()
         );
 
         // 기타 설정
